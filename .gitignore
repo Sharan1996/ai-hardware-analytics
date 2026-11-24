@@ -1,0 +1,23 @@
+# credentials - never commit
+profiles.yml
+.env
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# large data
+data/raw/
+*.pkl
+*.csv.gz
+
+# power bi cache
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
