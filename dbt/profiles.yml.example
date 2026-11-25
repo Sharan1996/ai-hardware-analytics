@@ -1,0 +1,16 @@
+# Copy this file to dbt/profiles.yml, fill in your values, and run dbt from the dbt/ folder:
+#   dbt debug --profiles-dir .
+# profiles.yml is in .gitignore, so your password never goes to GitHub.
+ai_hardware_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: your_account_identifier   # same value as SNOWFLAKE_ACCOUNT in .env
+      user: your_username
+      password: your_password
+      role: ACCOUNTADMIN
+      warehouse: AIHA_WH
+      database: AI_HW
+      schema: dev
+      threads: 4

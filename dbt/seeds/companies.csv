@@ -1,0 +1,5 @@
+cik,ticker,company_name,chain_role
+0000723125,MU,Micron Technology,memory
+0001835632,MRVL,Marvell Technology,custom_silicon
+0001730168,AVGO,Broadcom,custom_silicon_peer
+0000002488,AMD,Advanced Micro Devices,compute_peer

@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    database: ai_hw
+    schema: raw
+    tables:
+      - name: sec_facts
+        description: "SEC EDGAR XBRL company facts, one row per reported value per filing. Loaded by ingestion/pull_sec.py."
+        loaded_at_field: loaded_at
