@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: int_quarterly_financials
+    description: "One row per company per fiscal quarter. Flow metrics are de-cumulated from year-to-date SEC values; inventory is the quarter-end balance."
+    columns:
+      - name: company_quarter_id
+        tests:
+          - unique          # each company-quarter appears once
+          - not_null        # every row has an ID
+      - name: fiscal_quarter
+        tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
+      - name: revenue
+        tests:
+          - not_null          # every quarter has revenue
+      - name: period_end
+        tests:
+          - not_null          # every quarter has an end date
+      - name: calendar_quarter
+        tests:
+          - not_null          # every quarter maps to a calendar quarter
