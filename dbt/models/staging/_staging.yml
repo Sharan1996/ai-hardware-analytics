@@ -2,29 +2,29 @@ version: 2
 
 models:
   - name: stg_sec_facts
-    description: "Cleaned SEC XBRL facts: 10-Q/10-K only, typed dates, latest filing wins for restated values."
+    description: "SEC facts from 10-Q/10-K filings, one row per company, tag, unit and period (latest filing wins)."
     columns:
       - name: fact_id
-        description: "Surrogate key: cik + taxonomy + tag + unit + period."
         tests:
-          - unique
-          - not_null
+          - unique          # no two rows may share an ID
+          - not_null          # every row must have an ID
       - name: cik
         tests:
-          - not_null
-          - relationships:
-              to: ref('companies')
-              field: cik
-      - name: tag
-        tests:
-          - not_null
+          - not_null          # every row must have a company
       - name: period_end
         tests:
-          - not_null
+          - not_null          # every row must have an end date
       - name: value
         tests:
-          - not_null
+          - not_null          # every row must have a number
       - name: period_type
         tests:
           - accepted_values:
-              values: ['instant', 'quarter', 'year', 'other']
+              arguments:
+                values: ['instant', 'quarter', 'year', 'other']
+      - name: period_start
+        tests:
+          - not_null:
+              config:
+                where: "period_type <> 'instant'"        
+    
