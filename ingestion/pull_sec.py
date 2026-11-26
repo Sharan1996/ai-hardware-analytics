@@ -29,6 +29,7 @@ SEC_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik}.json"
 TAGS = {
     "Revenues",
     "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "SalesRevenueNet",     
     "CostOfRevenue",
     "CostOfGoodsAndServicesSold",
     "GrossProfit",
