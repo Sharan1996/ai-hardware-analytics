@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_company
+    description: "One row per company in the project, with its role in the AI hardware chain."
+    columns:
+      - name: cik
+        description: "SEC company ID. Primary key."
+        tests:
+          - unique
+          - not_null
+      - name: ticker
+        tests:
+          - unique
+          - not_null
+      - name: chain_role_label
+        tests:
+          - not_null
+  - name: fct_quarterly_financials
+    description: "One row per company per fiscal quarter, with financial KPIs. Grain: company + fiscal quarter."
+    columns:
+      - name: company_quarter_id
+        tests:
+          - unique
+          - not_null
+      - name: cik
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_company')
+                field: cik
+      - name: calendar_quarter
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_calendar')
+                field: calendar_quarter          
+  - name: dim_calendar
+    description: "One row per calendar quarter, 2008-2027. Shared time axis for companies with different fiscal years."
+    columns:
+      - name: calendar_quarter
+        description: "First day of the calendar quarter. Primary key."
+        tests:
+          - unique
+          - not_null            

@@ -27,4 +27,5 @@ models:
           - not_null:
               config:
                 where: "period_type <> 'instant'"        
+
     
